@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -19,16 +16,19 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Node.js version
+        node-version: '18'
 
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
-      run: echo "No tests for now"  # Eğer test yazmadıysan bunu geçebilirsin
+    - name: Run tests (şimdilik yok)
+      run: echo "No tests yet"
 
     - name: Build Docker image
-      run: docker build -t nodejs-devops-app .
+      run: docker build -t sedabayog/nodejs-devops-app .
+
+    - name: Login to DockerHub
+      run: echo "dckr_pat_TXSB-XjKrWlFRldNAsZljgPR3lY" | docker login -u "sedabayog" --password-stdin
 
     - name: Push Docker image to DockerHub
-      run: docker push nodejs-devops-app
+      run: docker push sedabayog/nodejs-devops-app
