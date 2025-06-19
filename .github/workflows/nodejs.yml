@@ -28,7 +28,7 @@ jobs:
       run: docker build -t sedabayog/nodejs-devops-app .
 
     - name: Login to DockerHub
-      run: echo "dckr_pat_TXSB-XjKrWlFRldNAsZljgPR3lY" | docker login -u "sedabayog" --password-stdin
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "sedabayog" --password-stdin
 
     - name: Push Docker image to DockerHub
       run: docker push sedabayog/nodejs-devops-app
